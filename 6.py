@@ -1,26 +1,8 @@
-test = """abc
-
-a
-b
-c
-
-ab
-ac
-
-a
-a
-a
-a
-
-b
-"""
+from utils import load_input
 
 
 def split(word):
     return [char for char in word]
-
-
-a = test.split("\n\n")
 
 
 def p1(s):
@@ -43,10 +25,14 @@ def p2(s):
     return tot
 
 
-if __name__ == "__main__":
+def main():
+    test = load_input("6-test.txt")
     assert p1(test) == 11
-    with open("inputs/6.txt", "r") as f:
-        a = f.read()
+    a = load_input("6.txt")
     print("Part 1 : {}".format(p1(a)))
     assert p2(test) == 6
     print("Part 2 : {}".format(p2(a)))
+
+
+if __name__ == "__main__":
+    main()

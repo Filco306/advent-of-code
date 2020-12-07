@@ -1,10 +1,5 @@
 from collections import Counter
-
-a = """1-3 a: abcde
-1-3 b: cdefg
-2-9 c: ccccccccc""".split(
-    "\n"
-)
+from utils import load_input
 
 
 def preprocess(lines):
@@ -42,8 +37,16 @@ def analyze_lines(a, preprocess_tup=True, p2=False):
     return tot
 
 
-assert analyze_lines(a, p2=True) == 1
+def main():
+    a = """1-3 a: abcde
+    1-3 b: cdefg
+    2-9 c: ccccccccc""".split(
+        "\n"
+    )
+    assert analyze_lines(a, p2=True) == 1
+    b = load_input("2.txt").split("\n")
+    print(analyze_lines(b, p2=True))
 
-with open("inputs/2.txt", "r") as f:
-    b = f.read().split("\n")[:-1]
-print(analyze_lines(b, p2=True))
+
+if __name__ == "__main__":
+    main()

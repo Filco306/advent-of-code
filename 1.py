@@ -1,9 +1,5 @@
 from itertools import combinations
 
-with open("inputs/1.txt", "r") as f:
-    a = [int(x) for x in f.read().split("\n")[:-1]]
-test = [1721, 979, 366, 299, 675, 1456]
-
 
 def get_ans(li, tot_sum=2020):
     d = set()
@@ -26,9 +22,16 @@ def get_ans_2(li, tot_sum=2020):
     raise Exception("ERROR NO 3 NUMBERS SUM UP TO {} IN LIST".format(tot_sum))
 
 
-if __name__ == "__main__":
+def main():
+    with open("inputs/1.txt", "r") as f:
+        a = [int(x) for x in f.read().split("\n")[:-1]]
+    test = [1721, 979, 366, 299, 675, 1456]
     assert get_ans(test) == 514579
     print("Ans part 1: {}".format(get_ans(a)))
 
     assert get_ans_2(test) == 241861950
     print("Ans part 2: {}".format(get_ans_2(a)))
+
+
+if __name__ == "__main__":
+    main()

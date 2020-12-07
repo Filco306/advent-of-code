@@ -1,7 +1,5 @@
 import re
-
-with open("inputs/4.txt", "r") as f:
-    test = f.read()[:-1]
+from utils import load_input
 
 
 def p4_p1(doc):
@@ -48,6 +46,7 @@ def checks(s, field):
 
 
 def p4_p2(doc):
+
     pports = doc.split("\n\n")
     fields = set(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
     tot = 0
@@ -57,6 +56,11 @@ def p4_p2(doc):
     return tot
 
 
-if __name__ == "__main__":
+def main():
+    test = load_input("4.txt")
     print("Part 1: {}".format(p4_p1(test)))
     print("Part 2: {}".format(p4_p2(test)))
+
+
+if __name__ == "__main__":
+    main()

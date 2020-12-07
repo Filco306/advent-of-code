@@ -1,5 +1,4 @@
-with open("inputs/3-test.txt", "r") as f:
-    test = f.read().split("\n")[:-1]
+from utils import load_input
 
 
 def fst(lines):
@@ -9,10 +8,6 @@ def fst(lines):
         tot += int(line[curr_ind % len(line)] == "#")
         curr_ind += 3
     return tot
-
-
-with open("inputs/3.txt", "r") as f:
-    real = f.read().split("\n")[:-1]
 
 
 def find_slope(lines, down, right):
@@ -31,11 +26,16 @@ def snd(lines, instructions):
     return tot
 
 
-if __name__ == "__main__":
+def main():
+    test = load_input("3-test.txt")
     print("Part 1: {}".format(fst(test)))
-    # snd(test, instructions=[(1,1),(3,1),(5,1),(7,1),(1,2)])
+    real = load_input("3.txt")
     print(
         "Part 2: {}".format(
             snd(real, instructions=[(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)])
         )
     )
+
+
+if __name__ == "__main__":
+    main()
