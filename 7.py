@@ -61,19 +61,16 @@ def p1(s):
     return len(all_bags)
 
 
-def p2_recursive(curr, curr_parents, parents, curr_bag):
+def p2_recursive(curr, curr_parents, parents):
     tot = 0
     for parent in curr_parents:
         tot += parent[0] * curr
         if parent[1] in parents:
-            tot += p2_recursive(
-                curr * parent[0], parents[parent[1]], parents, curr_bag=parent[1]
-            )
+            tot += p2_recursive(curr * parent[0], parents[parent[1]], parents)
     return tot
 
 
 def p2(s):
-    parents = {}
     children = {}
     a = s.split("\n")
     for line in a:
@@ -85,15 +82,7 @@ def p2(s):
                 children[convert_desc(bag)].add(
                     (int(re.match("(\d+)", content).group(1)), convert_desc(content))
                 )
-            if convert_desc(content) not in parents:
-                parents[convert_desc(content)] = set()
-            if "no other bags" not in content:
-                parents[convert_desc(content)].add(
-                    (int(re.match("(\d+)", content).group(1)), convert_desc(bag))
-                )
-            else:
-                parents[convert_desc(content)].add((0, convert_desc(bag)))
-    return p2_recursive(1, children["shiny gold bag"], children, "shiny gold bag")
+    return p2_recursive(1, children["shiny gold bag"], children)
 
 
 def main():
