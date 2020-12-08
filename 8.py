@@ -1,5 +1,4 @@
 from utils import load_input
-from copy import deepcopy
 
 
 class Interpreter:
@@ -50,7 +49,7 @@ def p2(ins, inter):
             nops_jmps.append(i)
 
     for i in nops_jmps:
-        candidate = deepcopy(ins)
+        candidate = ins.copy()
         if candidate[i][0] == "nop":
             candidate[i] = ("jmp", candidate[i][1])
         else:
