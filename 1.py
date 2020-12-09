@@ -1,13 +1,5 @@
 from itertools import combinations
-
-
-def get_ans(li, tot_sum=2020):
-    d = set()
-    for num in li:
-        if num in d:
-            return num * (tot_sum - num)
-        d.add(tot_sum - num)
-    raise Exception("ERROR")
+from utils import get_sum_of_2_nums
 
 
 def get_ans_2(li, tot_sum=2020):
@@ -26,8 +18,8 @@ def main():
     with open("inputs/1.txt", "r") as f:
         a = [int(x) for x in f.read().split("\n")[:-1]]
     test = [1721, 979, 366, 299, 675, 1456]
-    assert get_ans(test) == 514579
-    print("Ans part 1: {}".format(get_ans(a)))
+    assert get_sum_of_2_nums(test) == 514579
+    print("Ans part 1: {}".format(get_sum_of_2_nums(a)))
 
     assert get_ans_2(test) == 241861950
     print("Ans part 2: {}".format(get_ans_2(a)))
