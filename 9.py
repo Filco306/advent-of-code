@@ -9,13 +9,36 @@ def p1(s, jump):
     raise Exception("All numbers have a sum here. ")
 
 
-def p2(s, num):
+def p2_old(s, num):
+    # Deprecated. Not as fast.
+    # Good if numbers are changing
     s = [int(x) for x in s.split("\n")]
     ftree = FenwickTree(s)
     for i in range(0, len(s) - 1):
         for j in range(i + 1, len(s)):
             if ftree.get_sum_between(i, j) == num:
                 return max(s[i : (j + 1)]) + min(s[i : (j + 1)])  # noqa: E203
+
+
+def p2(s, num):
+    s = [int(x) for x in s.split("\n")]
+
+    for i in range(0, len(s) - 1):
+        fst = i
+        last = -1
+        tot = sum(s[fst : (last + 1)])  # noqa: E203
+        for j in range(i + 1, len(s)):
+            if (i == 0 and j == 1) is False:
+                if i != fst:
+                    tot -= s[fst]
+                    fst = i
+                if j != last:
+                    tot += s[j]
+                    last = j
+                if tot == num:
+                    return max(s[fst : (last + 1)]) + min(  # noqa: E203
+                        s[fst : (last + 1)]  # noqa: E203
+                    )
 
 
 def main():
